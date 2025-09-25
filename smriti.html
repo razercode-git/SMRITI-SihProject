@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>SMRITI – Early Dementia Detection App</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css?family=Segoe+UI:400,700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #3575ec;
+      --accent: #6a4cff;
+      --bg: #f6f8fc;
+      --white: #fff;
+      --gray: #e0e0e0;
+      --text: #222;
+      --cta: #3575ec;
+      --cta-hover: #285bb5;
+    }
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+    }
+    /* Navbar */
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: var(--white);
+      padding: 18px 32px;
+      box-shadow: 0 2px 8px rgba(80,80,160,0.07);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+    .navbar-logo {
+      font-size: 1.6em;
+      font-weight: 700;
+      color: var(--primary);
+      letter-spacing: 2px;
+    }
+    .navbar-links a {
+      margin-left: 28px;
+      text-decoration: none;
+      color: var(--text);
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+    .navbar-links a:hover {
+      color: var(--primary);
+    }
+    /* Hero Section */
+    .hero {
+      background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+      background-image: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1200&q=80');
+      background-size: cover;
+      background-position: center;
+      padding: 80px 0 120px 0;
+      text-align: center;
+      position: relative;
+    }
+    .hero-overlay {
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(245, 248, 252, 0.85);
+      z-index: 1;
+    }
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    .hero h1 {
+      font-size: 2.8em;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 18px;
+      letter-spacing: 1px;
+    }
+    .hero .tagline {
+      font-size: 1.3em;
+      color: #333;
+      margin-bottom: 32px;
+    }
+    .hero-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 18px;
+      margin-top: 24px;
+    }
+    .btn {
+      padding: 14px 32px;
+      border-radius: 8px;
+      border: none;
+      font-size: 1.1em;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.1s;
+      box-shadow: 0 2px 8px rgba(80,80,160,0.10);
+    }
+    .btn-primary {
+      background: var(--cta);
+      color: var(--white);
+    }
+    .btn-primary:hover {
+      background: var(--cta-hover);
+      transform: scale(1.05);
+    }
+    .btn-secondary {
+      background: var(--white);
+      color: var(--primary);
+      border: 2px solid var(--primary);
+    }
+    .btn-secondary:hover {
+      background: var(--primary);
+      color: var(--white);
+      transform: scale(1.05);
+    }
+    /* How It Works */
+    .how-section {
+      background: var(--white);
+      padding: 60px 0;
+      text-align: center;
+    }
+    .how-title {
+      font-size: 2em;
+      font-weight: 700;
+      margin-bottom: 36px;
+      color: var(--accent);
+    }
+    .how-steps {
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      flex-wrap: wrap;
+    }
+    .how-step {
+      background: var(--bg);
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(80,80,160,0.07);
+      padding: 32px 24px;
+      width: 220px;
+      margin-bottom: 20px;
+    }
+    .how-step-icon {
+      font-size: 2.5em;
+      margin-bottom: 18px;
+      color: var(--primary);
+    }
+    .how-step-title {
+      font-size: 1.1em;
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+    /* Features */
+    .features-section {
+      background: var(--bg);
+      padding: 60px 0;
+      text-align: center;
+    }
+    .features-title {
+      font-size: 2em;
+      font-weight: 700;
+      margin-bottom: 36px;
+      color: var(--accent);
+    }
+    .features-list {
+      display: flex;
+      justify-content: center;
+      gap: 32px;
+      flex-wrap: wrap;
+    }
+    .feature-card {
+      background: var(--white);
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(80,80,160,0.07);
+      padding: 28px 20px;
+      width: 200px;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+    .feature-icon {
+      font-size: 2em;
+      margin-bottom: 14px;
+      color: var(--accent);
+    }
+    .feature-title {
+      font-size: 1.1em;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+    /* App Preview */
+    .preview-section {
+      background: var(--white);
+      padding: 60px 0;
+      text-align: center;
+    }
+    .preview-title {
+      font-size: 2em;
+      font-weight: 700;
+      margin-bottom: 36px;
+      color: var(--primary);
+    }
+    .preview-cards {
+      display: flex;
+      justify-content: center;
+      gap: 32px;
+      flex-wrap: wrap;
+    }
+    .preview-card {
+      background: var(--bg);
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(80,80,160,0.07);
+      padding: 18px;
+      width: 220px;
+      margin-bottom: 20px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .preview-img {
+      width: 180px;
+      height: 110px;
+      background: #e0e0e0;
+      border-radius: 8px;
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5em;
+      color: #888;
+    }
+    /* CTA Section */
+    .cta-section {
+      background: linear-gradient(90deg, #6a4cff 0%, #8ec5fc 100%);
+      color: var(--white);
+      text-align: center;
+      padding: 60px 0;
+    }
+    .cta-title {
+      font-size: 2em;
+      font-weight: 700;
+      margin-bottom: 18px;
+    }
+    .cta-btn {
+      padding: 16px 40px;
+      font-size: 1.2em;
+      border-radius: 8px;
+      border: none;
+      background: var(--white);
+      color: var(--accent);
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 2px 8px rgba(80,80,160,0.10);
+      transition: background 0.2s, color 0.2s, transform 0.1s;
+    }
+    .cta-btn:hover {
+      background: var(--accent);
+      color: var(--white);
+      transform: scale(1.05);
+    }
+    /* Footer */
+    footer {
+      background: var(--white);
+      color: #555;
+      padding: 32px 0 16px 0;
+      text-align: center;
+      font-size: 1em;
+      margin-top: 0;
+      border-top: 1px solid #e0e0e0;
+    }
+    .footer-links {
+      margin-bottom: 10px;
+    }
+    .footer-links a {
+      margin: 0 14px;
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+    .footer-links a:hover {
+      color: var(--accent);
+    }
+    .footer-team {
+      margin-top: 8px;
+      font-size: 0.95em;
+      color: #888;
+    }
+    /* Responsive */
+    @media (max-width: 900px) {
+      .how-steps, .features-list, .preview-cards {
+        flex-direction: column;
+        align-items: center;
+        gap: 0;
+      }
+      .how-step, .feature-card, .preview-card {
+        width: 90%;
+        margin-bottom: 24px;
+      }
+    }
+    @media (max-width: 600px) {
+      .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 14px 12px;
+      }
+      .hero h1 {
+        font-size: 2em;
+      }
+      .hero .tagline {
+        font-size: 1em;
+      }
+      .container {
+        padding: 24px 8px;
+      }
+      .how-section, .features-section, .preview-section, .cta-section {
+        padding: 36px 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="navbar-logo">SMRITI</div>
+    <div class="navbar-links">
+      <a href="#">Home</a>
+      <a href="#how">How It Works</a>
+      <a href="#features">Features</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </nav>
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <h1>SMRITI – Early Dementia Detection App</h1>
+      <div class="tagline">Helping you screen early signs of dementia with simple tests.</div>
+      <div class="hero-buttons">
+        <a href="login.html"><button class="btn btn-primary">Get Started</button></a>
+        <a href="#how"><button class="btn btn-secondary">Learn More</button></a>
+      </div>
+    </div>
+  </section>
+  <!-- How It Works Section -->
+  <section class="how-section" id="how">
+    <div class="how-title">How It Works</div>
+    <div class="how-steps">
+      <div class="how-step">
+        <div class="how-step-icon">📝</div>
+        <div class="how-step-title">Step 1: Answer Questions</div>
+        <div>Fill out a short questionnaire about your health and habits.</div>
+      </div>
+      <div class="how-step">
+        <div class="how-step-icon">🧠</div>
+        <div class="how-step-title">Step 2: Take Cognitive Test</div>
+        <div>Complete simple memory and attention tasks.</div>
+      </div>
+      <div class="how-step">
+        <div class="how-step-icon">📊</div>
+        <div class="how-step-title">Step 3: Get Results</div>
+        <div>Receive your risk score and recommendations instantly.</div>
+      </div>
+    </div>
+  </section>
+  <!-- Features Section -->
+  <section class="features-section" id="features">
+    <div class="features-title">Features & Benefits</div>
+    <div class="features-list">
+      <div class="feature-card">
+        <div class="feature-icon">⏰</div>
+        <div class="feature-title">Early Detection</div>
+        <div>Spot signs of dementia before they progress.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">👍</div>
+        <div class="feature-title">Easy to Use</div>
+        <div>Simple, guided tests for all ages.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🔒</div>
+        <div class="feature-title">Secure & Confidential</div>
+        <div>Your data is private and protected.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">📈</div>
+        <div class="feature-title">Track Progress</div>
+        <div>Monitor your cognitive health over time.</div>
+      </div>
+    </div>
+  </section>
+  <!-- App Preview Section -->
+  <section class="preview-section">
+    <div class="preview-title">App Preview</div>
+    <div class="preview-cards">
+      <div class="preview-card">
+        <div class="preview-img">Dashboard</div>
+        <div>See your profile, risk badge, and test history.</div>
+      </div>
+      <div class="preview-card">
+        <div class="preview-img">Test Screen</div>
+        <div>Take memory, attention, and speech tests.</div>
+      </div>
+      <div class="preview-card">
+        <div class="preview-img">Results</div>
+        <div>Get instant feedback and recommendations.</div>
+      </div>
+    </div>
+  </section>
+  <!-- Call to Action Section -->
+  <section class="cta-section">
+    <div class="cta-title">Start Screening Now</div>
+    <a href="login.html"><button class="cta-btn">Register / Login</button></a>
+  </section>
+  <!-- Footer -->
+  <footer id="contact">
+    <div class="footer-links">
+      <a href="#">About Us</a>
+      <a href="#">Contact</a>
+      <a href="#">Privacy Policy</a>
+    </div>
+    <div class="footer-team">
+      Team "Helping-Hand" &copy; 2025
+    </div>
+    <div style="margin-top:6px;font-size:0.9em;">Created for awareness and early screening. All rights reserved.</div>
+  </footer>
+</body>
+</html>
