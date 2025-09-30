@@ -1,0 +1,76 @@
+body {
+  background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  font-family: 'Segoe UI', Arial, sans-serif;
+  min-height: 100vh;
+  margin: 0;
+}
+
+.container {
+  max-width: 500px;
+  margin: 48px auto;
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: 0 8px 32px rgba(80, 80, 160, 0.12);
+  padding: 40px 32px;
+  text-align: center;
+  transition: box-shadow 0.2s;
+}
+
+input, select, button {
+  margin: 10px 0;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #bdbdbd;
+  font-size: 1em;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+input:focus, select:focus {
+  border-color: #6a4cff;
+}
+
+button {
+  background: linear-gradient(90deg, #6a4cff 0%, #8ec5fc 100%);
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  font-weight: 500;
+  box-shadow: 0 2px 8px rgba(80, 80, 160, 0.10);
+  transition: background 0.2s, transform 0.1s;
+}
+
+button:hover {
+  background: linear-gradient(90deg, #8ec5fc 0%, #6a4cff 100%);
+  box-shadow: 0 4px 16px rgba(80, 80, 160, 0.18);
+  transform: scale(1.05);
+}
+
+.hidden {
+  display: none;
+}
+
+table {
+  width: 100%;
+  margin-top: 20px;
+  border-collapse: collapse;
+  background: #f8f8ff;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(80, 80, 160, 0.08);
+}
+
+th, td {
+  padding: 12px;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+th {
+  background: #e0c3fc;
+  color: #333;
+  font-weight: 600;
+}
+
+tr:last-child td {
+  border-bottom: none;
+}
