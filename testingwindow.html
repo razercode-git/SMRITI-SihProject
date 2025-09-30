@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SMRITI - Cognitive Test Suite</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #abd7f0;
+      color: #333;
+    }
+    .container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      padding: 20px;
+    }
+    .test-box {
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      padding: 40px;
+      width: 100%;
+      max-width: 800px;
+      text-align: center;
+    }
+    h2 {
+      margin-bottom: 20px;
+      color: #0077b6;
+    }
+    .question {
+      font-size: 1.2rem;
+      margin-bottom: 20px;
+    }
+    .options {
+      margin: 15px 0;
+      text-align: left;
+    }
+    .options label {
+      display: block;
+      margin-bottom: 10px;
+    }
+    .next-btn {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 12px 24px;
+      background: #0077b6;
+      color: white;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    .next-btn:hover {
+      background: #005f86;
+    }
+    canvas {
+      border: 1px solid #ccc;
+      margin-top: 20px;
+    }
+    .stroop-word {
+      font-size: 2rem;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <div class="test-box" id="test-box">
+      <!-- Tests load here -->
+    </div>
+  </div>
+
+  <script>
+    const tests = [
+      { title: "Orientation",
+        content: `
+          <p class="question">Enter today’s <b>Date</b> and <b>Place</b>:</p>
+          <input type="date"><br><br>
+          <input type="text" placeholder="Enter place here">
+        `},
+      { title: "Immediate Recall",
+        content: `<p class="question">Remember these words: <b>Apple, Chair, Blue</b></p>`},
+      { title: "Delayed Recall",
+        content: `<p class="question">What were the 3 words shown earlier?</p><input type="text">`},
+      { title: "Digit Span (Forward)",
+        content: `<p class="question">Repeat: <b>4 - 9 - 2 - 7</b></p><input type="text">`},
+      { title: "Digit Span (Backward)",
+        content: `<p class="question">Repeat backwards: <b>3 - 8 - 1 - 6</b></p><input type="text">`},
+      { title: "Verbal Fluency",
+        content: `<p class="question">List animals in 1 min:</p><textarea rows="4"></textarea>`},
+      { title: "Speech Test",
+        content: `<p class="question">Click record and say: <b>"The quick brown fox jumps over the lazy dog."</b></p>
+                  <button onclick="alert('Mic recording logic goes here')">🎤 Start Recording</button>`},
+      { title: "Trail Making A",
+        content: `<p class="question">Click numbers in order: 1 → 2 → 3 → 4 → 5</p><p>(Game placeholder)</p>`},
+      { title: "Trail Making B",
+        content: `<p class="question">Click numbers + letters: 1 → A → 2 → B → 3 → C</p><p>(Game placeholder)</p>`},
+      { title: "Stroop Test",
+        content: `<p class="question">Identify the <b>color</b> not the text:</p>
+                  <p class="stroop-word" style="color:red;">BLUE</p>
+                  <button>Red</button><button>Blue</button><button>Green</button>`},
+      { title: "Reaction Time",
+        content: `<p class="question">Click when box turns green.</p>
+                  <button onclick="alert('Reaction timer logic goes here')">Start</button>`},
+      { title: "Serial Subtraction",
+        content: `<p class="question">Subtract 7 from 100 continuously.</p>
+                  <textarea rows="3"></textarea>`},
+      { title: "Clock Drawing",
+        content: `<p class="question">Draw a clock showing 11:10.</p><canvas id="clockCanvas" width="300" height="300"></canvas>`},
+      { title: "Questionnaire",
+        content: `<p class="question">Do you often forget where you placed things?</p>
+                  <label><input type="radio" name="q1"> Yes</label>
+                  <label><input type="radio" name="q1"> No</label>`},
+      { title: "Short GDS",
+        content: `<p class="question">Do you feel satisfied with your life?</p>
+                  <label><input type="radio" name="gds1"> Yes</label>
+                  <label><input type="radio" name="gds1"> No</label>`},
+     { 
+  title: "Done",
+  content: `
+    <p>You have completed all tests. Thank you!</p>
+    <a href="dashboard2.html" class="next-btn">Go to Dashboard</a>
+  `
+}
+
+    ];
+
+    let current = 0;
+    const testBox = document.getElementById("test-box");
+
+    function loadTest(i) {
+      let test = tests[i];
+      let html = `<h2>${test.title}</h2>${test.content}`;
+      if (i < tests.length - 1) {
+        html += `<br><br><a href="#" class="next-btn" onclick="nextTest()">Next</a>`;
+      }
+      testBox.innerHTML = html;
+
+      // Special handling for clock drawing canvas
+      if (test.title === "Clock Drawing") {
+        const canvas = document.getElementById("clockCanvas");
+        if (canvas) {
+          const ctx = canvas.getContext("2d");
+          ctx.fillStyle = "#f9f9f9";
+          ctx.fillRect(0, 0, 300, 300);
+          ctx.beginPath();
+          ctx.arc(150, 150, 100, 0, Math.PI * 2);
+          ctx.stroke();
+        }
+      }
+    }
+
+    function nextTest() {
+      current++;
+      loadTest(current);
+    }
+
+    // Load first test
+    loadTest(current);
+  </script>
+
+</body>
+</html>

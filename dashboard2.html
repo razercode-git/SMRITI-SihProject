@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Dashboard – SMRITI</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body {
+      background: linear-gradient(120deg, #76dcf0 0%, #3bd8f7 100%);
+      min-height: 100vh;
+      margin: 0;
+      font-family: 'Montserrat', Arial, sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .dashboard-card {
+      background: #fff;
+      border-radius: 18px;
+      box-shadow: 0 8px 32px rgba(0,180,216,0.12);
+      padding: 40px 32px;
+      max-width: 600px;
+      width: 100%;
+      text-align: center;
+    }
+    .profile-header {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      margin-bottom: 18px;
+    }
+    .profile-header img {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: #ade8f4;
+      box-shadow: 0 2px 8px rgba(0,180,216,0.10);
+    }
+    .risk-badge {
+      display: inline-block;
+      padding: 6px 18px;
+      border-radius: 16px;
+      font-weight: 600;
+      font-size: 1em;
+      margin: 8px 0;
+      color: #fff;
+    }
+    .risk-low { background: #43ea7c; }
+    .risk-medium { background: #ffd166; color: #222; }
+    .risk-high { background: #ef476f; }
+    table {
+      width: 100%;
+      margin-top: 20px;
+      border-collapse: collapse;
+      background: #f8f8ff;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0,180,216,0.08);
+    }
+    th, td {
+      padding: 12px;
+      border-bottom: 1px solid #e0e0e0;
+      text-align: center;
+    }
+    th {
+      background: #caf0f8;
+      color: #222;
+      font-weight: 600;
+    }
+    tr:last-child td {
+      border-bottom: none;
+    }
+    .dashboard-btn {
+      margin: 18px 8px 0 8px;
+      padding: 12px 32px;
+      border-radius: 8px;
+      border: none;
+      background: #00b4d8;
+      color: #fff;
+      font-size: 1.1em;
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: 0 2px 8px rgba(0,180,216,0.10);
+      transition: background 0.2s, transform 0.1s;
+    }
+    .dashboard-btn:hover {
+      background: #0077b6;
+      transform: scale(1.05);
+    }
+    @media (max-width: 700px) {
+      .dashboard-card {
+        padding: 24px 8px;
+        max-width: 98vw;
+      }
+      table th, table td {
+        padding: 8px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="dashboard-card">
+    <div class="profile-header">
+      <img src="Smritilogo.png" alt="User">
+      <div>
+        <h2 style="margin:0;">Demo User</h2>
+        <div style="font-size:1em; color:#0077b6;">Last Test Date: <strong>2025-09-24</strong></div>
+      </div>
+    </div>
+    <div>
+      <span class="risk-badge risk-low">Low Risk</span>
+    </div>
+    <h3 style="margin-top:24px;">Test History</h3>
+    <table>
+      <tr>
+        <th>Date</th><th>Memory</th><th>Attention</th><th>Risk</th>
+       </tr>
+      <tr>
+        <td>2025-09-24</td><td>5</td><td>4</td><td><span class="risk-badge risk-low">Low</span></td>
+      </tr>
+      <tr>
+        <td>2025-09-20</td><td>3</td><td>2</td><td><span class="risk-badge risk-medium">Medium</span></td>
+      </tr>
+      <tr>
+        <td>2025-09-10</td><td>2</td><td>1</td><td><span class="risk-badge risk-high">High</span></td>
+      </tr>
+    </table>
+    <h3 style="margin-top:32px;">Progress Chart</h3>
+    <canvas id="scoreChart" width="400" height="180"></canvas>
+    <br>
+    <a href="testingwindow.html"><button class="dashboard-btn">Take New Test</button></a>
+    <a href="#"><button class="dashboard-btn">Download Report (CSV)</button></a>
+  </div>
+  <script>
+    const ctx = document.getElementById('scoreChart').getContext('2d');
+    new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: ['2025-09-10','2025-09-20','2025-09-24'],
+        datasets: [
+          { label: 'Memory', data: [2,3,5], borderColor: '#00b4d8', backgroundColor: 'rgba(0,180,216,0.1)', fill: true },
+          { label: 'Attention', data: [1,2,4], borderColor: '#ef476f', backgroundColor: 'rgba(239,71,111,0.1)', fill: true }
+        ]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: { display: true }
+        },
+        scales: {
+          y: { beginAtZero: true, max: 6 }
+        }
+      }
+    });
+  </script>
+</body>
+</html>
